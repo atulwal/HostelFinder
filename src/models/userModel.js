@@ -15,18 +15,18 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Password is required"],
     },
-    phoneNumber: {
+    gender: {
       type: String,
+      required: true
+    },
+    contact: {
+      type: Number,
       required: true,
-    },
-    resetToken: {
-      type: String,
-      required: false,
-    },
+    }
   },
   {
     timestamps: true,
-  },
+  }
 );
 
 const userModel = mongoose.model("User", userSchema);
