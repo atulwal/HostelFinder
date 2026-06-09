@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import jwt from "jsonwebtoken"
 
 const userSchema = new mongoose.Schema(
   {
@@ -22,6 +23,11 @@ const userSchema = new mongoose.Schema(
     contact: {
       type: Number,
       required: true,
+    },
+    role: {
+      type: String,
+      enum: ["owner", "student"],
+      default: "student"
     }
   },
   {
@@ -29,5 +35,29 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-const userModel = mongoose.model("User", userSchema);
-export default userModel;
+userSchema.methods.generateAccessToken = async () => {
+  jwt.sign(
+    {
+      email: this.email,
+      name: this.name
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: process.env.ACCESS_TOKEN_EXPIRY
+    }
+  )
+}
+
+userSchema.methods.generateRefreshToken = async () => {
+  jwt.sign(
+    {
+      _id: this._id,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: process.env.REFRESH_TOKEN_EXPIRY
+    }
+  )
+}
+
+export const User = mongoose.model("User", userSchema);

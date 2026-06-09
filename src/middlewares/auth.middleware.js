@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { ApiRes } from "../utils/apiRes";
+import { ApiError } from "../utils/apiError";
 
 const protect = async (req, res, next) => {
 

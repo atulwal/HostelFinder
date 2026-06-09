@@ -8,11 +8,11 @@ const hostelSchema = new mongoose.Schema(
     },
     owner: {
       type: mongoose.Schema.Type.ObjectId,
-      ref: "Owner",
+      ref: "User",
+      required: true
     },
     description: {
       type: String,
-      required: true,
     },
     location: {
       city: String,
@@ -28,10 +28,6 @@ const hostelSchema = new mongoose.Schema(
     contact: {
       type: mongoose.Schema.Type.ObjectId,
       ref: "Owner",
-    },
-    foodAvailability: {
-      type: Boolean,
-      default: false,
     },
     roomType: {
       type: String,
