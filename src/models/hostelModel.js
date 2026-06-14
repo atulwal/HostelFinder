@@ -6,7 +6,7 @@ const hostelSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    owner: {
+    ownerName: {
       type: mongoose.Schema.Type.ObjectId,
       ref: "User",
       required: true
@@ -21,7 +21,11 @@ const hostelSchema = new mongoose.Schema(
       state: String,
       required: true,
     },
-    rent: {
+    minPrice: {
+      type: Number,
+      default: 0,
+    },
+    maxPrice: {
       type: Number,
       default: 0,
     },
