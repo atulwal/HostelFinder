@@ -106,7 +106,7 @@ const deleteHostel = async (req, res) => {
   return res
   .status(200)
   .json(new ApiRes(200, {}, "Hostel deleted successfully"))
-};q
+};
 
 /*
 
