@@ -21,6 +21,9 @@ const hostelSchema = new mongoose.Schema(
       state: String,
       required: true,
     },
+    image: {
+      type: [String]
+    },
     minPrice: {
       type: Number,
       default: 0,

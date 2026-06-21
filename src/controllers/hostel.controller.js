@@ -12,12 +12,22 @@ const createHostel = async (req, res) => {
     throw new ApiError(400, "All field sare required");
   }
 
+  let imageUrls = [];
+
+  if(req.files && res.files.length > 0){
+    const uploadPromises = req.files.map(file =>
+      uploadToCloudinary(file.buffer)
+    )
+    imageUrls = await Promise.all(uploadPromises)
+  }
+
   const hostel = await Hostel.create({
     name,
     ownerName,
     description,
     location,
     rent,
+    image: imageUrls,
     owner: req.user._id,
   });
 
@@ -49,7 +59,7 @@ const getAllHostels = async (req, res) => {
     .json(new ApiRes(200, hostels, "Hostels fetched successfully"));
 };
 
-const getHostelsById = async (req, res) => {
+const getHostelById = async (req, res) => {
   const { id } = req.params;
   const hostel = await Hostel.findById(id).populate("owner", "name email");
 
@@ -107,6 +117,14 @@ const deleteHostel = async (req, res) => {
   .status(200)
   .json(new ApiRes(200, {}, "Hostel deleted successfully"))
 };
+
+export {
+  createHostel,
+  updateHostel,
+  deleteHostel,
+  getAllHostels,
+  getHostelById
+}
 
 /*
 
