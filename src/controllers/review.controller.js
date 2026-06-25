@@ -70,3 +70,5 @@ const deleteReview = async (req, res) => {
     .status(200)
     .json(new ApiRes(200, {}, "Review deleted successfully"));
 };
+
+export {addReview, getAllReviews, deleteReview}

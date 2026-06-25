@@ -2,7 +2,7 @@ import express from "express"
 import {addReview, getAllReviews, deleteReview} from "../controllers/review.controller.js"
 import {protect} from "../middlewares/auth.middleware.js"
 
-const router = express.Router;
+const router = express.Router();
 
 router.get("/", getAllReviews);
 router.post("/", addReview);

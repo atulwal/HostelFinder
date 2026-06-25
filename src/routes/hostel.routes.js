@@ -1,5 +1,5 @@
 import express from "express";
-import { protect, ownerOnly } from "../middleware/authMiddleware.js";
+import { protect, ownerOnly } from "../middlewares/auth.Middleware.js";
 import {
   createHostel,
   getAllHostels,

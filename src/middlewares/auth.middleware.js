@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { ApiError } from "../utils/apiError";
+import { ApiError } from "../utils/ApiError.js";
 
 const protect = async (req, res, next) => {
 
@@ -23,6 +23,5 @@ const ownerOnly = async (req, res, next) => {
   next();
 }
 
-
-
+export {protect, ownerOnly}
 

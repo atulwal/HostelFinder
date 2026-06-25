@@ -7,22 +7,21 @@ const hostelSchema = new mongoose.Schema(
       required: true,
     },
     ownerName: {
-      type: mongoose.Schema.Type.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "User",
-      required: true
+      required: true,
     },
     description: {
       type: String,
     },
     location: {
-      city: String,
-      Street: String,
-      area: String,
-      state: String,
-      required: true,
+      city: { type: String, required: true },
+      street: { type: String, required: true },
+      area: { type: String },
+      state: { type: String, required: true },
     },
     image: {
-      type: [String]
+      type: [String],
     },
     minPrice: {
       type: Number,
@@ -33,7 +32,7 @@ const hostelSchema = new mongoose.Schema(
       default: 0,
     },
     contact: {
-      type: mongoose.Schema.Type.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Owner",
     },
     roomType: {
